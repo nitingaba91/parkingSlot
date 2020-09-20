@@ -7,7 +7,6 @@ fs.readFile('./carDetail.txt',function (err,input) {
         process.exit();
     }
     let data = input.toString().split('\n');
-    console.log('-=-==-',data)
     data.forEach(element => {
         let txt = element.split(' ');
         switch (txt[0]) {
@@ -20,9 +19,17 @@ fs.readFile('./carDetail.txt',function (err,input) {
                     console.log(`error occured ==> ${e}`);
                 }
                 break;
-
+                case ('park'):
+                     try {
+                         const result = parkingLot.carPark(txt[1].trim());
+                         console.log(result);
+                     } catch (e) {
+                         console.log(`error occured ==> ${e}`);
+                     }
+                     break;
             default:
                 console.log('Some Issue in Typing command. Please check the input');
         }
     });
+    process.exit();
 })
