@@ -19,14 +19,23 @@ fs.readFile('./carDetail.txt',function (err,input) {
                     console.log(`error occured ==> ${e}`);
                 }
                 break;
-                case ('park'):
-                     try {
-                         const result = parkingLot.carPark(txt[1].trim());
-                         console.log(result);
-                     } catch (e) {
-                         console.log(`error occured ==> ${e}`);
-                     }
-                     break;
+            case ('park'):
+                try {
+                    const result = parkingLot.carPark(txt[1].trim());
+                    console.log(result);
+                } catch (e) {
+                    console.log(`error occured ==> ${e}`);
+                }
+                break;
+            case ('status'):
+                try {
+                    const result = parkingLot.getSlotStatus();
+                    console.log(result);
+                } catch (e) {
+                    console.log(`error occured ==> ${e}`);
+                }
+                break;
+            
             default:
                 console.log('Some Issue in Typing command. Please check the input');
         }
