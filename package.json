@@ -1,0 +1,20 @@
+{
+    "name": "parking_lot",
+    "version": "0.0.1",
+    "description": "Parking lot problem",
+    "main": "index.js",
+    "directories": {
+        "test": "test"
+    },
+    "scripts": {
+        "test": "mocha"
+    },
+    "author": "Nitin Gaba",
+    "devDependencies": {
+        "chai": "^4.2.0",
+        "mocha": "^6.1.4"
+    },
+    "dependencies": {
+        "fs": "0.0.1-security"
+    }
+}
