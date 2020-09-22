@@ -13,24 +13,31 @@ fs.readFile('./carDetail.txt',function (err,input) {
             case ('create_parking_lot'):
 
                 try {
-                    const result = parkingLot.createParkingSlot(txt[1]);
-                    console.log(result);
+                    parkingLot.createParkingSlot(txt[1]);
                 } catch (e) {
                     console.log(`error occured ==> ${e}`);
                 }
                 break;
             case ('park'):
                 try {
-                    const result = parkingLot.carPark(txt[1].trim());
-                    console.log(result);
+                    parkingLot.carPark(txt[1].trim());
                 } catch (e) {
                     console.log(`error occured ==> ${e}`);
                 }
                 break;
+            case ('leave'):
+
+                try {
+                    parkingLot.leaveCar(txt[1],txt[2]);
+                } catch (e) {
+                    console.log(`error occured ==> ${e}`);
+                }
+                break;
+
+
             case ('status'):
                 try {
-                    const result = parkingLot.getSlotStatus();
-                    console.log(result);
+                    parkingLot.getSlotStatus();
                 } catch (e) {
                     console.log(`error occured ==> ${e}`);
                 }
