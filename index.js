@@ -1,7 +1,10 @@
 const fs = require('fs');
 const parkingLot = require('./parkingLot')
-
-fs.readFile('./carDetail.txt',function (err,input) {
+var filePath = process.argv[2];
+if(!filePath) {
+    filePath = './file_inputs.txt'
+}
+fs.readFile(filePath,function (err,input) {
     if(err || !input) {
         console.log('Please check input');
         process.exit();
@@ -28,7 +31,7 @@ fs.readFile('./carDetail.txt',function (err,input) {
             case ('leave'):
 
                 try {
-                    parkingLot.leaveCar(txt[1],txt[2]);
+                    parkingLot.leaveParking(txt[1],txt[2]);
                 } catch (e) {
                     console.log(`error occured ==> ${e}`);
                 }

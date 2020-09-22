@@ -1,19 +1,19 @@
-let maxSlot = 0;
 let availableCars = [];
 let availableSlots = [];
 
 
 let createParkingSlot =  (no) => {
-  try {
-    maxSize = parseInt(no);
-  } catch (e) {
-    console.log("Please Enter valid num");
+  maxSize = parseInt(no);
+  if(no) {
+    for (let i = 1; i <= maxSize; i++) {
+      availableSlots.push(i);
+    }
+    console.log(`Created parking lot with ${availableSlots.length} slots`);
+    return `Created parking lot with ${availableSlots.length} slots`;
+  } else {
+    console.log(`Created parking lot with ${availableSlots.length} slots`);
+    return `Please pass slot num`;
   }
-
-  for (let i = 1; i <= maxSize; i++) {
-    availableSlots.push(i);
-  }
-  console.log(`Created parking lot with ${availableSlots.length} slots`);
 }
 
 let carPark = async (carNo) => {
@@ -21,6 +21,7 @@ let carPark = async (carNo) => {
     console.log(`No Parking Slot`);
   } else if (maxSize === availableCars.length) {
     console.log(`Sorry, parking lot is full`);
+    return `Sorry, parking lot is full`;
   } else {
     let slot = availableSlots[0];
     availableCars.push({
@@ -29,6 +30,7 @@ let carPark = async (carNo) => {
     });
     availableSlots.shift();
     console.log(`Allocated slot number: ${slot}`);
+    return `Allocated slot number: ${slot}`;
   }
 }
 let getSlotStatus = () => {
@@ -56,13 +58,12 @@ let sortArray = (array, key) => {
   });
 }
 
-let leaveCar = (registratonNo, hour) => {
-  if(!registratonNo || !hour) {
-    console.log("Please enter correct input i.e registration number and hour");
-    return;
-  }
+let leaveParking = (registratonNo, hour) => {
   if (maxSize === 0) {
     console.log("No Parking Slot");
+  } else if(!registratonNo || !hour) {
+    console.log("Please enter correct input i.e registration number and hour");
+    return 'Please enter correct input i.e registration number and hour';
   } else if (availableCars.length > 0) {
     let slot = {};
     availableCars.forEach(function (row, index) {
@@ -73,7 +74,7 @@ let leaveCar = (registratonNo, hour) => {
     });
     if (!slot.registratonNo) {
       console.log(`Registration number ${registratonNo} not found`);
-      return;
+      return `Registration number ${registratonNo} not found`;
     }
     availableCars.splice(slot.carIndex, 1);
     availableSlots.push(slot.slot);
@@ -84,8 +85,10 @@ let leaveCar = (registratonNo, hour) => {
       slot.charges = 10 + (10 * (Math.ceil(hour) - 2));
     }
     console.log(`Registration number ${slot.registratonNo} with slot number ${slot.slot} is free with charge ${slot.charges}`);
+    return `Registration number ${slot.registratonNo} with slot number ${slot.slot} is free with charge ${slot.charges}`;
   } else {
     console.log(`Registration number ${registratonNo} not found`);
+    return `Registration number ${registratonNo} not found`;
   }
 }
 
@@ -93,5 +96,5 @@ module.exports = {
   createParkingSlot,
   carPark,
   getSlotStatus,
-  leaveCar
+  leaveParking
 }
